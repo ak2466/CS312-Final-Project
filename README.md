@@ -23,12 +23,12 @@ INNER JOIN
 INNER JOIN 
     ingredients i ON ri.ingredients_id = i.id
 WHERE 
-    i.name = ANY(:user_ingredients_array) -- Filter to only the selected items
+    i.name = ANY($1) -- Filter to only the selected items
 GROUP BY 
     	r.id, r.name, r.description, r.createdDate, r.modifiedDate, r.user_id
     -- MUST group by all non-aggregated columns from the SELECT list (r.*)
 HAVING 
-    COUNT(DISTINCT i.name) = :count_of_user_ingredients; -- Replace parameter with the count
+    COUNT(DISTINCT i.name) = $2; -- Replace parameter with the count
 
 4. Searching for recipes
 SELECT * FROM recipe r
