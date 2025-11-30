@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import Button from './Button';
 import {User, ChefHat} from 'lucide-react'
+import { Link, useLocation } from "react-router-dom";
 
 
 function NavBar(props) {
   const {
     username = "Username",
-    currentView,
-    onViewChange
-    } = props;
+  } = props;
 
-  const pages = ['Home', 'Find', 'Recipe'];
+  const pages = [
+    { label: "Home", path: "/" },
+    { label: "Find", path: "/find" }
+  ];
 
   return (
     <header className="bg-red-500 h-16 flex items-center justify-between px-4 md:px-8">
@@ -21,17 +23,18 @@ function NavBar(props) {
 
         {
           pages.map((page) => {
-            if (page === currentView) return null;
+            const active = location.pathname === page.path;
 
             return (
-              <Button
-                key={page}
-                variant="nav"
-                className="w-[98px] h-10 flex justify-center items-center shrink-0"
-                onClick={() => onViewChange(page)}
-              >
-              {page}
-              </Button>
+              <Link key={page.path} to={page.path}>
+                <Button
+                  key={page}
+                  variant="nav"
+                  className={`w-[98px] h-10 flex justify-center items-center shrink-0 ${active ? "bg-white text-black" : ""}`}
+                >
+                  {page.label}
+                </Button>
+              </Link>
             );})
         }
       </div>

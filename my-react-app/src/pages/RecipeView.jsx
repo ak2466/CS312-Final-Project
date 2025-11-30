@@ -1,32 +1,13 @@
-import { useState } from "react";
-import {useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 
 const RecipeView = () => {
   const {id} = useParams();
-  // 
-  //const [recipe, setRecipe] = useState(null);
+  
+  const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const recipe = {
-        id: id,
-        title: "Test",
-        description: "This is a test recipe",
-        cookTime: "100 mins",
-        image_url: null,
-        tags: ["tag1", "tag2", "tag3"],
-        ingredients: [
-          "2 mesure ingredient 1",
-          "1 mesure ingredient 2",
-          "1 mesure ingredient 3",
-          "4 mesure ingredient 4",
-          "2 mesure ingredient 5",
-          "1 mesure ingredient 6"
-        ]
-      };
-
-  //if (loading) return <div className="text-center mt-20">Loading Recipe...</div>;
-  //if (!recipe) return <div className="text-center mt-20">Recipe not found</div>;
 
   const loadRecipe = async () => {
 
@@ -34,15 +15,26 @@ const RecipeView = () => {
 
     try {
       //query here
-      const data = null;
+      const result = await fetch(`/api/recipe/${id}`);
+      const data = await result.json;
+
+      setRecipe(data);
 
     } catch (e) {
-      console
+      console.log("Recipe Not Found, Id:", id);
     } finally {
       setLoading(false);
     }
 
   }
+
+  useEffect(() => {
+    loadRecipe();
+  }, []);
+
+
+  if (loading) return <div className="text-center mt-20">Loading Recipe...</div>;
+  if (!recipe) return <div className="text-center mt-20">Recipe not found</div>;
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
