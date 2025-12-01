@@ -1,5 +1,5 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
+import express from 'express';
+import jwt from 'jsonwebtoken';
 const app = express();
 const port = 3000;
 
@@ -13,7 +13,7 @@ import {
   processLogin,
   processSignup,
   createRecipe
-} from './lib/database';
+} from './lib/database.js';
 
 // middleware 
 app.use(express.json()); // parse json request bodies
