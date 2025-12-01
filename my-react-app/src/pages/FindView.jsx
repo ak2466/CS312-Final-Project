@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import {Search} from 'lucide-react'
+import { Search } from 'lucide-react'
 import { Link } from "react-router-dom";
+import RecipeCard from '../components/RecipeCard';
 
 const FindView = () => {
   const [searchTerm, setSearchTerm] = useState("");
