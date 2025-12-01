@@ -48,6 +48,17 @@ app.get('/api/recipes-top', async (_, res) => {
   }
 });
 
+app.get('/api/search/', async (req, res) => {
+  const searchString = req.query.search;
+
+  try {
+    const queryResult = await querySimilarRecipeNames(searchString);
+    res.json({ message: "Success", data: queryResult });
+  } catch {
+    res.status(500).json({ message: 'Error fetching recipes', error: error.message });
+  }
+});
+
 // process signup
 app.post('/api/signup', async (req, res) => {
   const signup_data = req.body;
