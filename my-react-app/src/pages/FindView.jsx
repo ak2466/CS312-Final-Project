@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import {Search} from 'lucide-react'
+import { Search } from 'lucide-react'
 import { Link } from "react-router-dom";
+import RecipeCard from '../components/RecipeCard';
 
 const FindView = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,11 +17,11 @@ const FindView = () => {
 
     try {
         // db query code
-        //const result = await fetch();
+        const result = await fetch(`/api/search?search=${encodeURIComponent(searchTerm)}`);
 
-        //const data = await result.json();
+        const data = await result.json();
 
-        //setRecipes(data);
+        setRecipes(data.data);
 
     } catch (error) {
         console.log("Error Fetching Recipes");
