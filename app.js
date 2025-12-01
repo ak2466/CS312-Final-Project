@@ -1,5 +1,5 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
+import express from 'express';
+import jwt from 'jsonwebtoken';
 const app = express();
 const port = 3000;
 
@@ -11,8 +11,9 @@ import {
   querySimilarRecipeNames,
   queryTopRatedRecipes,
   processLogin,
-  processSignup
-} from './lib/database';
+  processSignup,
+  createRecipe
+} from './lib/database.js';
 
 // middleware 
 app.use(express.json()); // parse json request bodies
@@ -79,6 +80,23 @@ app.post('/api/login', async (req, res) => {
     res.json({ message: 'Login successful', token });
   } else {
     res.status(401).json({ message: 'Invalid credentials' });
+  }
+});
+
+// create a new recipe
+app.post('/api/recipe', async (req, res) => {
+  const { name, description, userId, ingredients, steps, tags } = req.body;
+  
+  // Validate required fields
+  if (!name || !description || !userId) {
+    return res.status(400).json({ message: 'Missing required fields: name, description, and userId are required' });
+  }
+
+  try {
+    const result = await createRecipe(name, description, userId, ingredients, steps, tags);
+    res.status(201).json({ message: 'Recipe created successfully', data: result });
+  } catch (error) {
+    res.status(500).json({ message: 'Error creating recipe', error: error.message });
   }
 });
 
