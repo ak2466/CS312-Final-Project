@@ -16,9 +16,9 @@ const RecipeView = () => {
     try {
       //query here
       const result = await fetch(`/api/recipe/${id}`);
-      const data = await result.json;
+      const data = await result.json();
 
-      setRecipe(data);
+      setRecipe(data.data);
 
     } catch (e) {
       console.log("Recipe Not Found, Id:", id);

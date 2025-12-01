@@ -17,7 +17,9 @@ const HomeView = () => {
       const data = await result.json();
 
       // set as first recipe
-      setRecipe(data[0]);
+      if (data.data && data.data.length > 0) {
+        setRecipe(data.data[0]);
+      }
 
     } catch (e) {
       console.log("Couldn't fetch top recipe");

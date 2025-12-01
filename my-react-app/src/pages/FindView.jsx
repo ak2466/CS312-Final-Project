@@ -16,11 +16,11 @@ const FindView = () => {
 
     try {
         // db query code
-        //const result = await fetch();
+        const result = await fetch(`/api/search?search=${encodeURIComponent(searchTerm)}`);
 
-        //const data = await result.json();
+        const data = await result.json();
 
-        //setRecipes(data);
+        setRecipes(data.data);
 
     } catch (error) {
         console.log("Error Fetching Recipes");
