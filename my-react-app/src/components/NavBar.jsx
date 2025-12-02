@@ -11,7 +11,8 @@ function NavBar(props) {
 
   const pages = [
     { label: "Home", path: "/" },
-    { label: "Find", path: "/find" }
+    { label: "Find", path: "/find" },
+    { label: "Create", path: "/create" }
   ];
 
   return (

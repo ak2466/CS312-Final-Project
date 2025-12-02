@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import HomeView from './pages/HomeView'
 import FindView from './pages/FindView'
+import CreateView from './pages/CreateView'
 import NavBar from './components/NavBar'
 import RecipeView from './pages/RecipeView';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomeView />} />
             <Route path="/find" element={<FindView />} />
+            <Route path="/create" element={<CreateView />} />
             <Route path="/recipe/:id" element={<RecipeView />} />
           </Routes>
         </main>
