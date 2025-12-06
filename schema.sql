@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS "users" (
+CREATE TABLE IF NOT EXISTS "Users" (
 	"id" SERIAL NOT NULL UNIQUE,
 	"name" TEXT NOT NULL,
 	"email" TEXT NOT NULL,
@@ -17,6 +17,8 @@ CREATE TABLE IF NOT EXISTS "recipe" (
 	"createdDate" TIMESTAMPTZ NOT NULL,
 	"modifiedDate" TIMESTAMPTZ NOT NULL,
 	"user_id" INTEGER NOT NULL,
+	"cook_time" SMALLINT,
+	"image_url" TEXT,
 	PRIMARY KEY("id")
 );
 
@@ -97,7 +99,7 @@ CREATE TABLE IF NOT EXISTS "replies" (
 
 
 ALTER TABLE "recipe"
-ADD FOREIGN KEY("user_id") REFERENCES "users"("id")
+ADD FOREIGN KEY("user_id") REFERENCES "Users"("id")
 ON UPDATE NO ACTION ON DELETE CASCADE;
 ALTER TABLE "recipe_ingredients"
 ADD FOREIGN KEY("recipe_id") REFERENCES "recipe"("id")
@@ -115,13 +117,13 @@ ALTER TABLE "recipe_tags"
 ADD FOREIGN KEY("tag_id") REFERENCES "tag"("id")
 ON UPDATE NO ACTION ON DELETE NO ACTION;
 ALTER TABLE "review"
-ADD FOREIGN KEY("user_id") REFERENCES "users"("id")
+ADD FOREIGN KEY("user_id") REFERENCES "Users"("id")
 ON UPDATE NO ACTION ON DELETE CASCADE;
 ALTER TABLE "review"
 ADD FOREIGN KEY("recipe_id") REFERENCES "recipe"("id")
 ON UPDATE NO ACTION ON DELETE CASCADE;
 ALTER TABLE "replies"
-ADD FOREIGN KEY("user_id") REFERENCES "users"("id")
+ADD FOREIGN KEY("user_id") REFERENCES "Users"("id")
 ON UPDATE NO ACTION ON DELETE CASCADE;
 ALTER TABLE "replies"
 ADD FOREIGN KEY("review_id") REFERENCES "review"("id")
