@@ -17,6 +17,8 @@ CREATE TABLE IF NOT EXISTS "recipe" (
 	"createdDate" TIMESTAMPTZ NOT NULL,
 	"modifiedDate" TIMESTAMPTZ NOT NULL,
 	"user_id" INTEGER NOT NULL,
+	"cook_time" SMALLINT,
+	"image_url" TEXT,
 	PRIMARY KEY("id")
 );
 
