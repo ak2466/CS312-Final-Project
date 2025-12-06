@@ -7,10 +7,10 @@ const RecipeCard = ({ recipe }) => {
   
   const { 
     id,
-    title = "Untitled Recipe", 
+    name = "Untitled Recipe", 
     description = "No description provided.", 
     tags = [],
-    image_url
+    image_url = null
   } = recipe;
 
   return (
@@ -21,7 +21,7 @@ const RecipeCard = ({ recipe }) => {
           {image_url ? (
             <img 
               src={image_url} 
-              alt={title} 
+              alt={name} 
               className="w-40 h-40 rounded-full object-cover border-2 border-gray-300"
             />
           ) : (
@@ -45,7 +45,7 @@ const RecipeCard = ({ recipe }) => {
 
           <div className="flex items-center gap-2 flex-wrap pt-4">
               
-            {tags && tags.length > 0 && tags.map((tag, index) => (
+            {tags && tags.length > 0 && tags.slice(0, 3).map((tag, index) => (
               <span 
                 key={index} 
                 className="bg-red-500 text-white px-3 py-1 rounded text-sm font-semibold"
@@ -54,10 +54,9 @@ const RecipeCard = ({ recipe }) => {
               </span>
             ))}
 
-            <button className="text-gray-500 hover:text-gray-700 ml-1">
-              <MoreHorizontal size={24} />
-            </button>
-
+            {tags && tags.length > 3 && (
+                <MoreHorizontal size={24} />
+            )}
           </div>
         </div>
       </div>

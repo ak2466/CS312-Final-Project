@@ -45,15 +45,15 @@ const RecipeView = () => {
             
             <div className="w-64 h-64 rounded-full bg-white border-4 border-gray-300 flex items-center justify-center overflow-hidden shadow-lg">
               {recipe.image_url ? (
-                <img src={recipe.image_url} alt={recipe.title} className="w-full h-full object-cover" />
+                <img src={recipe.image_url} alt={recipe.name} className="w-full h-full object-cover" />
               ) : (
                 <span className="text-gray-400 font-bold text-xl">Recipe Image</span>
               )}
             </div>
 
-            <div className="w-full border-2 border-dotted border-gray-400 p-4 bg-white text-center rounded">
+            <div className="w-full border-2 border-gray-400 p-4 bg-white text-center rounded">
               <h3 className="text-lg font-bold uppercase text-gray-500 mb-1">Cook Time</h3>
-              <p className="text-2xl font-bold text-black">{recipe.cookTime}</p>
+              <p className="text-2xl font-bold text-black">{recipe.cook_time}</p>
             </div>
 
             <div className="w-full">
@@ -70,7 +70,7 @@ const RecipeView = () => {
           <div className="w-full md:w-2/3 space-y-8">
           
             <div className="border-b-2 border-dotted border-gray-300 pb-4">
-              <h1 className="text-5xl font-bold text-gray-800">{recipe.title}</h1>
+              <h1 className="text-5xl font-bold text-gray-800">{recipe.name}</h1>
             </div>
 
             <div className="bg-white p-6 rounded border border-gray-200 shadow-sm">
@@ -86,17 +86,29 @@ const RecipeView = () => {
                <ul className="space-y-3 text-lg">
                  {recipe.ingredients && recipe.ingredients.map((ing, i) => (
                    <li key={i} className="flex items-center">
-                     <span className="mr-2 text-gray-400">•</span>
-                     {ing}
+                     <span className="mr-2 text-gray-400"></span>
+                     {ing.name}, {ing.quantity}, {ing.unit}
                    </li>
                  ))}
                </ul>
             </div>
 
+            {recipe.steps.map((step, index) => (
+                <div key={index} className="w-full mb-4 flex items-center">
+                  <span className="text-xl font-bold mr-3 text-gray-700">{index + 1}.</span>
+                  
+                  <span
+                      className="flex-grow h-14 pl-4 pr-6 rounded border-2 border-gray-300 bg-gray-50 text-lg"
+                  >
+                    {step}
+                  </span>
+                </div>
+            ))}
           </div>
         </div>
       </main>
-    </div>);
+    </div>
+  );
 }
 
 export default RecipeView;
