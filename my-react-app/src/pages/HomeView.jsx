@@ -19,6 +19,8 @@ const HomeView = () => {
       // set as first recipe
       if (data.data && data.data.length > 0) {
         setRecipe(data.data[0]);
+
+
       }
 
     } catch (e) {

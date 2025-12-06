@@ -3,11 +3,11 @@ import Button from './Button';
 import { MoreHorizontal } from 'lucide-react';
 
 
-const RecipeCard = ({ recipe }) => {
+const RecipeCard = ( recipe ) => {
   
   const { 
     id,
-    name = "Untitled Recipe", 
+    title = "Untitled Recipe", 
     description = "No description provided.", 
     tags = [],
     image_url = null
