@@ -44,9 +44,11 @@ function NavBar(props) {
         <span className="text-white font-medium hidden md:block">
           Welcome, {username}
         </span>
-        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 border-2 border-gray-200">
-          <User size={20} />
-        </div>
+          <Link key={`/signin`} to={`/signin`}>
+            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 border-2 border-gray-200">
+              <User size={20} />
+            </div>
+          </Link>
       </div>
     </header>
   );

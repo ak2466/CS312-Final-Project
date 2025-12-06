@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import RecipeCard from '../components/RecipeCard';
 import { X, Plus } from 'lucide-react';
 import Button from '../components/Button';
+import { useNavigate } from 'react-router-dom';
+
 
 const CreateView = () => {
 
@@ -14,6 +16,7 @@ const CreateView = () => {
   const [recipeIngs, setIngs] = useState([{ name: "", quantity: "", unit: "" }]);
 
   const recipeUserId = "1";
+  const navigate = useNavigate();
 
 
   const handleTitleChange = (event) => {
