@@ -32,6 +32,7 @@ const CreateView = () => {
   }
 
   const handleImgUrlChange = (event) => {
+    console.log(recipeImgUrl);
     setImgUrl(event.target.value);
   }
 
@@ -113,6 +114,7 @@ const CreateView = () => {
     }
 
     try {
+      console.log(recipe);
       const res = await fetch('/api/recipe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -137,13 +139,17 @@ const CreateView = () => {
           <div className="w-full md:w-1/3 flex flex-col items-center space-y-8 bg-red-300 p-6 rounded-lg">
                 
             <div className="w-64 h-64 rounded-full bg-white border-4 border-gray-300 flex items-center justify-center overflow-hidden shadow-lg">
-              <input
+              {recipeImgUrl ? (
+                <img src={recipeImgUrl} alt={recipeTitle} className="w-full h-full object-cover" />
+              ) : (
+                <input
                 type="text"
                 placeholder='Image URL' 
                 className="text-lg font-bold uppercase text-gray-500 mb-1 text-center bg-transparent border-none focus:ring-0 focus:outline-none"
                 value={recipeImgUrl}
                 onChange={handleImgUrlChange}
-              />
+                />
+              )}
             </div>
 
             <div className="w-full border-2 border-gray-400 p-4 bg-white text-center rounded">
