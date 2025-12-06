@@ -85,15 +85,22 @@ app.post('/api/login', async (req, res) => {
 
 // create a new recipe
 app.post('/api/recipe', async (req, res) => {
-  const { name, description, userId, ingredients, steps, tags } = req.body;
+
+  // console.log(req.body);
+
+  const { name, description, ingredients, steps, tags, cook_time, image_url, user_id } = req.body;
+
+  // console.log("Name: ", name);
+  // console.log("Descroption: ", description);
+  // console.log("User_id: ", user_id);
   
   // Validate required fields
-  if (!name || !description || !userId) {
-    return res.status(400).json({ message: 'Missing required fields: name, description, and userId are required' });
+  if (!name || !description || !user_id) {
+    return res.status(400).json({ message: 'Missing required fields: name, description, and user_id are required' });
   }
 
   try {
-    const result = await createRecipe(name, description, userId, ingredients, steps, tags);
+    const result = await createRecipe(name, description, user_id, ingredients, steps, tags);
     res.status(201).json({ message: 'Recipe created successfully', data: result });
   } catch (error) {
     res.status(500).json({ message: 'Error creating recipe', error: error.message });
