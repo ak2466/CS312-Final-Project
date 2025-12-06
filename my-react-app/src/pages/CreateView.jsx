@@ -38,10 +38,8 @@ const CreateView = () => {
   const handleAddTag = () => {
     setTags([...recipeTags, '']);
   }
-  const handleRemoveTag = () => {
-    if (recipeTags.length > 1) {
-      setTags(recipeTags.slice(0, -1));
-    }
+  const handleRemoveTag = (index) => {
+    setTags(recipeTags.filter((_, i) => i !== index))
   }
 
   const handleTagChange = (index, value) => {
@@ -172,7 +170,7 @@ const CreateView = () => {
                   />
                   <button
                     type="button"
-                    onClick={handleRemoveTag}
+                    onClick={() => handleRemoveTag(i)}
                     className='p-1 rounded-full hover:bg-gray-800'
                   >
                     <X size={15}/>
