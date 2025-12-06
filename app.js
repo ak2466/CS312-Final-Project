@@ -86,13 +86,7 @@ app.post('/api/login', async (req, res) => {
 // create a new recipe
 app.post('/api/recipe', async (req, res) => {
 
-  // console.log(req.body);
-
   const { name, description, ingredients, steps, tags, cook_time, image_url, user_id } = req.body;
-
-  // console.log("Name: ", name);
-  // console.log("Descroption: ", description);
-  // console.log("User_id: ", user_id);
   
   // Validate required fields
   if (!name || !description || !user_id) {
