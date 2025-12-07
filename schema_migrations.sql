@@ -21,7 +21,10 @@ SELECT
     ri.notes,
 
     i.id AS ingredient_id,
-    i.name AS ingredient_name
+    i.name AS ingredient_name,
+
+    t.id AS tag_id,
+    t.name AS tag_name
 
 FROM recipe r 
 INNER JOIN steps s 
@@ -29,4 +32,8 @@ ON r.id = s.recipe_id
 INNER JOIN recipe_ingredients ri
 ON r.id = ri.recipe_id
 INNER JOIN ingredients i
-ON i.id = ri.ingredients_id;
+ON i.id = ri.ingredients_id
+INNER JOIN recipe_tags rt
+ON r.id = rt.recipe_id
+INNER JOIN tag t
+ON t.id = rt.tag_id;

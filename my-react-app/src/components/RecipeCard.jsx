@@ -9,7 +9,6 @@ const RecipeCard = ( recipe ) => {
     id,
     name = "Untitled Recipe", 
     description = "No description provided.", 
-    tags = [],
     image_url = null
   } = recipe.recipeData;
 
@@ -47,16 +46,16 @@ const RecipeCard = ( recipe ) => {
 
           <div className="flex items-center gap-2 flex-wrap pt-4">
               
-            {tags && tags.length > 0 && tags.slice(0, 3).map((tag, index) => (
+            {recipe.tags && recipe.tags.length > 0 && recipe.tags.slice(0, 3).map((tag) => (
               <span 
-                key={index} 
+                key={tag.id} 
                 className="bg-red-500 text-white px-3 py-1 rounded text-sm font-semibold"
               >
-                {tag}
+                {tag.name}
               </span>
             ))}
 
-            {tags && tags.length > 3 && (
+            {recipe.tags && recipe.tags.length > 3 && (
                 <MoreHorizontal size={24} />
             )}
           </div>

@@ -42,7 +42,7 @@ app.get('/api/recipe/:id', async (req, res) => {
 // get top recipes for home page
 app.get('/api/recipes-top', async (_, res) => {
   try {
-    const queryResult = await queryTopRatedRecipes(50); // top 50 recipes
+    const queryResult = await queryTopRatedRecipes(5); // top 5 recipes
     res.json({ message: 'Success', data: queryResult });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching recipes', error: error.message });

@@ -60,9 +60,9 @@ const RecipeView = () => {
 
             <div className="w-full">
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                {recipe.tags && recipe.tags.map((tag, i) => (
-                  <span key={i} className="bg-gray-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow">
-                    {tag}
+                {recipe.tags && recipe.tags.map((tag) => (
+                  <span key={tag.id} className="bg-gray-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow">
+                    {tag.name}
                   </span>
                 ))}
               </div>
