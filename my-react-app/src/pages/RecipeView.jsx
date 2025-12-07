@@ -18,6 +18,8 @@ const RecipeView = () => {
       const result = await fetch(`/api/recipe/${id}`);
       const data = await result.json();
 
+      console.log("Data: ", data.data);
+
       setRecipe(data.data);
 
     } catch (e) {
@@ -58,7 +60,7 @@ const RecipeView = () => {
 
             <div className="w-full">
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                {recipe.tags.map((tag, i) => (
+                {recipe.tags && recipe.tags.map((tag, i) => (
                   <span key={i} className="bg-gray-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow">
                     {tag}
                   </span>
@@ -93,14 +95,14 @@ const RecipeView = () => {
                </ul>
             </div>
 
-            {recipe.steps.map((step, index) => (
+            {recipe.steps && recipe.steps.map((step, index) => (
                 <div key={index} className="w-full mb-4 flex items-center">
                   <span className="text-xl font-bold mr-3 text-gray-700">{index + 1}.</span>
                   
                   <span
                       className="flex-grow h-14 pl-4 pr-6 rounded border-2 border-gray-300 bg-gray-50 text-lg"
                   >
-                    {step}
+                    {step.description}
                   </span>
                 </div>
             ))}

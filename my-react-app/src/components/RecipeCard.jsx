@@ -7,11 +7,13 @@ const RecipeCard = ( recipe ) => {
   
   const { 
     id,
-    title = "Untitled Recipe", 
+    name = "Untitled Recipe", 
     description = "No description provided.", 
     tags = [],
     image_url = null
-  } = recipe;
+  } = recipe.recipeData;
+
+  console.log("Recipe: ", recipe.recipeData)
 
   return (
     <div className="bg-white border border-black w-full max-w-3xl p-6 relative shadow-sm hover:shadow-md transition-shadow">
@@ -35,7 +37,7 @@ const RecipeCard = ( recipe ) => {
         <div className="flex-1 w-full">
           <div className="border-b border-gray-200 pb-2 mb-2">
               <h2 className="text-2xl font-bold">
-                {title}
+                {name}
               </h2>
           </div>
           
