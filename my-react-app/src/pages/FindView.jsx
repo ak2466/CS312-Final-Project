@@ -17,6 +17,7 @@ const FindView = () => {
 
     try {
         // db query code
+        console.log(`/api/search?search=${encodeURIComponent(searchTerm)}`);
         const result = await fetch(`/api/search?search=${encodeURIComponent(searchTerm)}`);
 
         const data = await result.json();
@@ -57,7 +58,7 @@ const FindView = () => {
         {
             loading ? (<p>Loading...</p>) 
                 : recipes.length > 0 ? ( recipes.map((recipe) => (
-                  <Link key={recipe.id} to={`/recipe/${recipe.id}`}>
+                  <Link key={recipe.recipe_id} to={`/recipe/${recipe.recipe_id}`}>
                     <RecipeCard recipeData={recipe} />
                   </Link>
                 ))) 

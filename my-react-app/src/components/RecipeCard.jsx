@@ -6,13 +6,14 @@ import { MoreHorizontal } from 'lucide-react';
 const RecipeCard = ( recipe ) => {
   
   const { 
-    id,
+    recipe_id,
     name = "Untitled Recipe", 
-    description = "No description provided.", 
-    image_url = null
+    recipe_description = "No description provided.", 
+    image_url = null,
+    tags = []
   } = recipe.recipeData;
 
-  console.log("Recipe: ", recipe.recipeData)
+  console.log("TEST");
 
   return (
     <div className="bg-white border border-black w-full max-w-3xl p-6 relative shadow-sm hover:shadow-md transition-shadow">
@@ -41,12 +42,12 @@ const RecipeCard = ( recipe ) => {
           </div>
           
           <p className="text-gray-600 mb-6 min-h-[4rem]">
-            {description}
+            {recipe_description}
           </p>
 
           <div className="flex items-center gap-2 flex-wrap pt-4">
               
-            {recipe.tags && recipe.tags.length > 0 && recipe.tags.slice(0, 3).map((tag) => (
+            {tags && tags.length > 0 && tags.slice(0, 3).map((tag) => (
               <span 
                 key={tag.id} 
                 className="bg-red-500 text-white px-3 py-1 rounded text-sm font-semibold"
@@ -55,7 +56,7 @@ const RecipeCard = ( recipe ) => {
               </span>
             ))}
 
-            {recipe.tags && recipe.tags.length > 3 && (
+            {tags && tags.length > 3 && (
                 <MoreHorizontal size={24} />
             )}
           </div>
