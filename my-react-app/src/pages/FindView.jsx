@@ -17,7 +17,6 @@ const FindView = () => {
 
     try {
         // db query code
-        console.log(`/api/search?search=${encodeURIComponent(searchTerm)}`);
         const result = await fetch(`/api/search?search=${encodeURIComponent(searchTerm)}`);
 
         const data = await result.json();

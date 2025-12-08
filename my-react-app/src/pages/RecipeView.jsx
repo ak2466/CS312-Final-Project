@@ -18,8 +18,6 @@ const RecipeView = () => {
       const result = await fetch(`/api/recipe/${id}`);
       const data = await result.json();
 
-      console.log("Data: ", data.data);
-
       setRecipe(data.data);
 
     } catch (e) {

@@ -13,8 +13,6 @@ const RecipeCard = ( recipe ) => {
     tags = []
   } = recipe.recipeData;
 
-  console.log("TEST");
-
   return (
     <div className="bg-white border border-black w-full max-w-3xl p-6 relative shadow-sm hover:shadow-md transition-shadow">
       <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
