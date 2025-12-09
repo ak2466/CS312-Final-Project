@@ -1,0 +1,16 @@
+ #!/bin/zsh
+
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1,
+    "name": "water",
+    "description": "water",
+    "tags": ["test1", "test2"],
+    "ingredients": [
+      { "name": "Water", "quantity": "1", "unit": "Liter" },
+      { "name": "Ice", "quantity": "1", "unit": "Cup" },
+      { "name": "Ice", "quantity": "5", "unit": "Cubes" }
+    ]
+  }' \
+  localhost:3000/api/recipe
