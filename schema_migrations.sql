@@ -5,6 +5,7 @@ ADD COLUMN IF NOT EXISTS image_url TEXT;
 ALTER TABLE tag
 ALTER COLUMN name SET NOT NULL
 ADD CONSTRAINT unique_tag_name UNIQUE (name);
+CREATE UNIQUE INDEX tag_name_lower_idx ON tag (LOWER(name));
 
 -- Add the new column
 ALTER TABLE recipe ADD COLUMN IF NOT EXISTS tsv TSVECTOR;
