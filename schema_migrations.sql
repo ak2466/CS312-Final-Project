@@ -2,6 +2,26 @@ ALTER TABLE recipe
 ADD COLUMN IF NOT EXISTS cook_time SMALLINT,
 ADD COLUMN IF NOT EXISTS image_url TEXT;
 
+ALTER TABLE ingredients
+ADD CONSTRAINT unique_ingredient_name UNIQUE (name);
+CREATE UNIQUE INDEX ingredient_name_lower_idx ON ingredients (LOWER(name));
+
+ALTER TABLE tag
+ALTER COLUMN name SET NOT NULL;
+
+ALTER TABLE tag
+ADD CONSTRAINT unique_tag_name UNIQUE (name);
+CREATE UNIQUE INDEX tag_name_lower_idx ON tag (LOWER(name));
+
+ALTER TABLE recipe_ingredients
+DROP CONSTRAINT recipe_ingredients_pkey;
+
+ALTER TABLE recipe_ingredients
+ADD CONSTRAINT recipe_ingredient_unique UNIQUE (recipe_id, ingredient_id, quantity, unit);
+
+ALTER TABLE recipe_ingredients
+ADD COLUMN id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY;
+
 -- Add the new column
 ALTER TABLE recipe ADD COLUMN IF NOT EXISTS tsv TSVECTOR;
 
@@ -65,9 +85,9 @@ SELECT
     rs.total_ratings
 
 FROM recipe r 
-INNER JOIN steps s 
+LEFT JOIN steps s 
 ON r.id = s.recipe_id
-INNER JOIN recipe_ingredients ri
+LEFT JOIN recipe_ingredients ri
 ON r.id = ri.recipe_id
 INNER JOIN ingredients i
 ON i.id = ri.ingredients_id
